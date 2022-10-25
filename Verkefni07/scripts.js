@@ -22,10 +22,14 @@ let points = 0;
  * @returns `true` ef tala er innan bils, annars `false`.
  */
 function isValidNum(numAsString, min, max) {
-  /* TODO útfæra */
-  if(isValidNum {
-    return ;
+  if (isNaN(numAsString)){
+    return false;
   }
+
+  if (MIN_NUM_OF_CUPS> numAsString || numAsString>MAX_NUM_OF_CUPS){
+    return false;
+  }
+  return true;
 }
 
 /**
@@ -35,9 +39,23 @@ function isValidNum(numAsString, min, max) {
  * @returns `null` ef notandi hætti við, annars vali notanda sem tölu.
  */
 function getChoice(numOfCups) {
-  /* TODO útfæra */
+ const guess = prompt(`Under which cup is the ball? choose a number between [${1}, ${numOfCups}], \n Press ESC or cancel to cancel`)
+ const choice= Number.parseInt(guess, 10);
+  if(choice == null){
+    return null;
+  }
+  if(choice== null){
+    return null;
+  }
+
+  if (1> choice || choice > numOfCups){
+    alert (`Invalid input, choose a number between [${1}, ${numOfCups}]`);
+    getChoice(numOfCups);
+  }
+return choice;
 }
 
+  
 /**
  * Skilar tölu af handahófi á bilinu [min, max].
  *
@@ -53,23 +71,49 @@ function randomNumber(min, max) {
  * Spilum leik.
  */
 function play() {
+  alert('You choose the amount of cup you wanna play with and we put a randomly put a ball under one of them,\n if you guess currently you win otherwise you lose')
   do {
-    const numOfCups = prompt(`Hve marga bolla?
-Verður að vera gildi á bilinu [${MIN_NUM_OF_CUPS}, ${MAX_NUM_OF_CUPS}].
-Þú færð N-1 fyrir að finna bolta í N bollum.
-Ýttu á cancel eða ESC til að hætta.`);
+    const numOfCups = prompt(`How many cups? choose a number between [${MIN_NUM_OF_CUPS}, ${MAX_NUM_OF_CUPS}], 
+    you get N-1 points for finding the ball among N number of cups
+    press ESC or cancel to close this window. `)
 
     // Ýtt á ESC/Cancel
     if (numOfCups === null) {
       return;
     }
-  /* TODO útfæra */
-  } while (true)
+
+    if (!isValidNum(numOfCups)){
+      console.error(numOfCups + 'is not a valid number! Try again')
+      return;
+    }
+    const cup= randomNumber (1, numOfCups);
+
+    const choice = getChoice(numOfCups);
+    if(choice === null){
+      return;
+    }
+
+    if(choice === cup){
+      const pointsWon= numOfCups-1;
+      points= won+1
+      alert (`You have guessed correctly! Currently you have ${pointsWon} points!`);
+    }
+
+    else{
+      alert ('You have guessed incorrectly, Take this L and try again')
+    }
+    played = played+1;
+    }
+    while (true)
+
 }
 
 /**
  * Birtir stöðu spilara.
  */
 function games() {
-  /* TODO útfæra */
+  console.log(` you have played ${played} games`);
+  if (played>0){
+    console.log(`you have won ${won} games,  you have lost ${played-won} games, in total you have earned ${points} points`)
+  }
 }
