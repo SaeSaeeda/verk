@@ -21,6 +21,7 @@ let points = 0;
  * @param {number} max Hámark sem tala má vera.
  * @returns `true` ef tala er innan bils, annars `false`.
  */
+
 function isValidNum(numAsString, min, max) {
   if (isNaN(numAsString)){
     return false;
@@ -39,7 +40,8 @@ function isValidNum(numAsString, min, max) {
  * @returns `null` ef notandi hætti við, annars vali notanda sem tölu.
  */
 function getChoice(numOfCups) {
- const guess = prompt(`Under which cup is the ball? choose a number between [${1}, ${numOfCups}], \n Press ESC or cancel to cancel`)
+ const guess = prompt(`Under which cup is the ball? choose a number between [${1}, ${numOfCups}], 
+ \n Press ESC or cancel to cancel`)
  const choice= Number.parseInt(guess, 10);
   if(choice == null){
     return null;
@@ -71,9 +73,10 @@ function randomNumber(min, max) {
  * Spilum leik.
  */
 function play() {
-  alert('You choose the amount of cup you wanna play with and we put a randomly put a ball under one of them,\n if you guess currently you win otherwise you lose')
+  alert(`You choose the amount of cup you wanna play with and we randomly put a ball under one of them,
+  \n if you guess currectly you win otherwise and gain points you lose`)
   do {
-    const numOfCups = prompt(`How many cups? choose a number between [${MIN_NUM_OF_CUPS}, ${MAX_NUM_OF_CUPS}], 
+    const numOfCups = prompt(`How many cups do you want to play? choose a number between [${MIN_NUM_OF_CUPS}, ${MAX_NUM_OF_CUPS}], 
     you get N-1 points for finding the ball among N number of cups
     press ESC or cancel to close this window. `)
 
