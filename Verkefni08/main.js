@@ -49,28 +49,28 @@ document.querySelector('#max_cups').innerText = MAX_NUM_OF_CUPS;
  * @returns 
  */
 function onCupClick(e) {
-  let gamep =document.getElementById("games");
-  let point= document.getElementById("points");
+  let gamep = document.getElementById("games");
+  let gains = document.getElementById('points');
   e.preventDefault;
 
 
   let yourguess= parseInt(e.target.dataset.num);
-  let cup= document.querySelector(".cups").children[yourguess-1];
-  const cup__svg= cup.querySelector(".cup__svg");
+  let cup = document.querySelector(".cups").children[yourguess-1];
+  const cup_svg = cup.querySelector(".cup__svg");
 
-  if (yourguess == state.currentCup){
-    emptyElement(cup__svg);
-    cup__svg.classList.add("ball");
+  if (yourguess === state.currentCup){
+    emptyElement(cup_svg);
+    cup_svg.classList.add("ball");
     gamep.innerText ++;
     state.points += state.currentPointsAvailable;
-    point.innerText= state.points;
+    gains.innerText = state.points;
   }else{
-    emptyElement(cup__svg);
+    emptyElement(cup_svg);
     gamep.innerText++;
   }
   setTimeout(function(){
     showScreen('waiting'); 
-  }, SHOW_WAITINGSCREEN_TIME)
+    }, SHOW_WAITINGSCREEN_TIME)
   }
 
 /**
@@ -118,7 +118,7 @@ function onFormSubmit(e) {
     state.played= parseInt(document.getElementById("games").innerText);
 
   } else {
-  formError.classList.remove('form__error--hidden');
+    formError.classList.remove('form__error--hidden');
   }
 
   state.currentPointsAvailable = valueAsNumber-1;
